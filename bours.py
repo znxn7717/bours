@@ -37,7 +37,7 @@ def main():
     df['lPNL%'] = ((df['l price'] - df['purched price']) / df['purched price'] * 100).round(3)
     df['l2PNL%'] = (df['PNL%'] - df['lPNL%']).round(3)
     df = df.sort_values(by=['PNL%'], ignore_index=True)
-    print(df[['symbol', 'last price', 'time', 'PNL%', 'l2PNL%']])
+    print(df[['symbol', 'last price', 'time', 'PNL%']])
 
 
 if __name__ == '__main__':
