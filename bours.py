@@ -3,7 +3,6 @@ import pandas as pd
 start = datetime.datetime.now()
 
 def main():
-
     def time(id):
         req = requests.get(f'http://www.tsetmc.com/tsev2/data/instinfofast.aspx?{id}').text
         time = req.split(';')[0].split(',')[0]
@@ -16,7 +15,7 @@ def main():
         req = requests.get(f'http://www.tsetmc.com/tsev2/data/instinfofast.aspx?{id}').text
         lprice = float(req.split(';')[0].split(',')[5])
         return lprice
-    table = [['foulad', 11949, time('i=46348559193224090&c=27'), price('i=46348559193224090&c=27'), lprice('i=46348559193224090&c=27')],
+    table = [['foulad', 11949, time('i=46348559193224090&c=27'), price('i=46348559193224090&c=27'), lprice('i=46348559193224090&c=27')], 
     ['palayesh', 100235, time('i=67675656072510693&c=68%20&e=1'), price('i=67675656072510693&c=68%20&e=1'), lprice('i=67675656072510693&c=68%20&e=1')],
     ['parsan', 40228, time('i=23441366113375722&c=44'), price('i=23441366113375722&c=44'), lprice('i=23441366113375722&c=44')],
     ['ariyan', 11100, time('i=6506179926371994&c=56'), price('i=6506179926371994&c=56'), lprice('i=6506179926371994&c=56')],
@@ -38,7 +37,6 @@ def main():
     df['l2PNL%'] = (df['PNL%'] - df['lPNL%']).round(3)
     df = df.sort_values(by=['PNL%'], ignore_index=True)
     print(df[['symbol', 'last price', 'time', 'PNL%']])
-
 
 if __name__ == '__main__':
     while True:
