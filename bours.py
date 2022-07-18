@@ -32,11 +32,11 @@ def main():
     ['chkarn', 10825, time('i=53113471126689455&c=21'), price('i=53113471126689455&c=21'), lprice('i=53113471126689455&c=21')],
     ]
     df = pd.DataFrame(table, columns=['symbol', 'purched price', 'time', 'last price', 'l price'])
-    df['PNL%'] = ((df['last price'] - df['purched price']) / df['purched price'] * 100).round(3)
-    df['lPNL%'] = ((df['l price'] - df['purched price']) / df['purched price'] * 100).round(3)
-    df['l2PNL%'] = (df['PNL%'] - df['lPNL%']).round(3)
-    df = df.sort_values(by=['PNL%'], ignore_index=True)
-    print(df[['symbol', 'last price', 'time', 'PNL%']])
+    df['<last>PNL%'] = ((df['last price'] - df['purched price']) / df['purched price'] * 100).round(3)
+    df['<pervious>PNL%'] = ((df['l price'] - df['purched price']) / df['purched price'] * 100).round(3)
+    df['last-pervious='] = (df['<last>PNL%'] - df['<pervious>PNL%']).round(3)
+    df = df.sort_values(by=['<last>PNL%'], ignore_index=True)
+    print(df[['symbol', 'last price', 'time', '<last>PNL%', '<pervious>PNL%']])
 
 if __name__ == '__main__':
     while True:
